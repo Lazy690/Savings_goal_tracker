@@ -1,43 +1,49 @@
 {
   "Add": [
     {
-      "id": "97e0",
-      "Amount": "100",
+      "id": "9dfb",
+      "Amount": "10000",
       "Category": "dog",
       "Notes": ""
     },
     {
-      "id": "6a18",
-      "Amount": "100",
+      "id": "d1df",
+      "Amount": "10000",
+      "Category": "dog",
+      "Notes": ""
+    },
+    {
+      "id": "07a2",
+      "Amount": "1000",
       "Category": "cunt",
       "Notes": ""
     },
     {
-      "id": "d35f",
-      "Amount": "500000",
-      "Category": "dog",
+      "id": "4719",
+      "Amount": "10000",
+      "Category": "cunt",
+      "Notes": ""
+    },
+    {
+      "id": "e898",
+      "Amount": "10000",
+      "Category": "cunt",
       "Notes": ""
     }
   ],
   "Take": [
     {
-      "id": "e201",
-      "Amount": "50",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "0f53",
-      "Amount": "100",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "fd65",
-      "Amount": "50",
-      "Category": "dog",
+      "id": "7834",
+      "Amount": "1000",
+      "Category": "cunt",
       "Notes": ""
     }
   ],
-  "Dept": []
+  "Dept": [],
+  "TotalSaved": [
+    {
+      "id": 1,
+      "TotalSaved": 0
+    }
+  ]
 }
