@@ -1,0 +1,43 @@
+{
+  "Add": [
+    {
+      "id": "97e0",
+      "Amount": "100",
+      "Category": "dog",
+      "Notes": ""
+    },
+    {
+      "id": "6a18",
+      "Amount": "100",
+      "Category": "cunt",
+      "Notes": ""
+    },
+    {
+      "id": "d35f",
+      "Amount": "500000",
+      "Category": "dog",
+      "Notes": ""
+    }
+  ],
+  "Take": [
+    {
+      "id": "e201",
+      "Amount": "50",
+      "Category": "dog",
+      "Notes": ""
+    },
+    {
+      "id": "0f53",
+      "Amount": "100",
+      "Category": "dog",
+      "Notes": ""
+    },
+    {
+      "id": "fd65",
+      "Amount": "50",
+      "Category": "dog",
+      "Notes": ""
+    }
+  ],
+  "Dept": []
+}
