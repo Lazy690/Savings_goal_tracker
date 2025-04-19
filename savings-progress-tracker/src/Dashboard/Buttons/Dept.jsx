@@ -26,6 +26,8 @@ export default function Dept() {
     } else if (selection === 'Promised') {
       setFinalChoice('Promised');
     };
+
+    console.log(finalChoice)
     //now to get the values of the other entry boxes
     let amount = document.getElementById("amount");
     let amountvalue = amount.value
@@ -42,7 +44,7 @@ export default function Dept() {
     fetch('http://localhost:3001/Dept', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ Amount: amountvalue, Who: whovalue , Notes: notesvalue, Type: finalChoice}) 
+      body: JSON.stringify({ Amount: amountvalue, Who: whovalue , Notes: notesvalue, Type: finalChoice})
     })
 
     
