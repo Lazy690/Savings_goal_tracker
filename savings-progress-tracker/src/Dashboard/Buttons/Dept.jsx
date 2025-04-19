@@ -4,7 +4,7 @@ import './PopupForm.css';
 export default function Dept() {
   const [showForm, setShowForm] = useState(false);
   //Type:
-  const [finalChoice, setFinalChoice] = useState("");
+ 
   const [inputValue, setInputValue] = useState('');
   const [selection, setSelection] = useState(null); 
   
@@ -21,13 +21,6 @@ export default function Dept() {
     e.preventDefault();
     handleClose();
     
-    if (selection === 'Lended') {
-      setFinalChoice('Lended');
-    } else if (selection === 'Promised') {
-      setFinalChoice('Promised');
-    };
-
-    console.log(finalChoice)
     //now to get the values of the other entry boxes
     let amount = document.getElementById("amount");
     let amountvalue = amount.value
@@ -44,7 +37,8 @@ export default function Dept() {
     fetch('http://localhost:3001/Dept', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ Amount: amountvalue, Who: whovalue , Notes: notesvalue, Type: finalChoice})
+      body: JSON.stringify({ Amount: amountvalue, Who: whovalue , Notes: notesvalue, Type: selection})
+      
     })
 
     
@@ -84,6 +78,7 @@ export default function Dept() {
                     value={inputValue}
                     readOnly
                     placeholder="Type"
+                    requ
                   />
 
                   <div className="dropdown">

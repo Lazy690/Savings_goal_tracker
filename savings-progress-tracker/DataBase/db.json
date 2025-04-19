@@ -23,34 +23,25 @@
       "Amount": "10000",
       "Category": "dog",
       "Notes": ""
+    },
+    {
+      "id": "23ae",
+      "Amount": "60000",
+      "Category": "dog",
+      "Notes": ""
+    },
+    {
+      "id": "5e7a",
+      "Amount": "200000",
+      "Category": "dog",
+      "Notes": ""
     }
   ],
   "Take": [],
   "Dept": [
     {
-      "id": "47a4",
-      "Amount": "1000",
-      "Who": "papa",
-      "Notes": "my fat ass",
-      "Type": "Promised"
-    },
-    {
-      "id": "9d86",
-      "Amount": "10000",
-      "Who": "papa",
-      "Notes": "",
-      "Type": ""
-    },
-    {
-      "id": "79c1",
-      "Amount": "10000",
-      "Who": "papa",
-      "Notes": "",
-      "Type": "Promised"
-    },
-    {
-      "id": "07e2",
-      "Amount": "1000",
+      "id": "d2e5",
+      "Amount": "100000",
       "Who": "papa",
       "Notes": "",
       "Type": "Promised"
