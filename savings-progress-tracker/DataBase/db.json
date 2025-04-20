@@ -37,13 +37,20 @@
       "Notes": ""
     }
   ],
-  "Take": [],
+  "Take": [
+    {
+      "id": "5936",
+      "Amount": "300000",
+      "Category": "cat",
+      "Notes": ""
+    }
+  ],
   "Dept": [
     {
-      "id": "d2e5",
+      "id": "e361",
       "Amount": "100000",
       "Who": "papa",
-      "Notes": "",
+      "Notes": "gym",
       "Type": "Promised"
     }
   ],

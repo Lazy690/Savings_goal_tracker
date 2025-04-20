@@ -18,6 +18,7 @@
 }
 
 .modal {
+ 
   background: #585858;
   padding: 30px;
   border-radius: 8px;
@@ -90,4 +91,14 @@ input {
 .result {
   margin-top: 10px;
 }
-/* */ 
+
+/*Button in the dept management tab*/
+
+.deptlist {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 300px; /* optional, to keep it tidy */
+  margin-bottom: 8px;
+}
