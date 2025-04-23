@@ -43,6 +43,12 @@
       "Amount": "300000",
       "Category": "cat",
       "Notes": ""
+    },
+    {
+      "id": "b6c4",
+      "Amount": "10000",
+      "Category": "dog",
+      "Notes": "my fat ass"
     }
   ],
   "Dept": [
@@ -57,7 +63,8 @@
   "UpdateTotalsave": [
     {
       "totalsaved": "0",
-      "timestamp": "0"
+      "timestamp": "0",
+      "id": "3e74"
     }
   ]
 }

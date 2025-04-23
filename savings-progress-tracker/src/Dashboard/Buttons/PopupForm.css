@@ -19,7 +19,7 @@
 
 .modal {
  
-  background: #585858;
+  background: #060a14;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -50,6 +50,7 @@ input {
   font-size: 14px;
   border: 1px;
   border-radius: 10px;
+  background-color: #131a2f;
 }
 
 /*Drop down menu inside Dept component*/

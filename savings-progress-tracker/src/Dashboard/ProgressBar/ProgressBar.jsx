@@ -99,12 +99,11 @@ export default function ProgressBar() {
   //html section
   
   const background = {
-    margin: "40px",
+    
     width: "500px",
-    borderRadius: "8px",
-    border: "1px solid",
+   
     padding: "10px",
-    background: "gray",
+    background: "#060a14",
   };
 
   return (
