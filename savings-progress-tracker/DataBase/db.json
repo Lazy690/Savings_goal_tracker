@@ -51,15 +51,7 @@
       "Notes": "my fat ass"
     }
   ],
-  "Dept": [
-    {
-      "id": "e361",
-      "Amount": "100000",
-      "Who": "papa",
-      "Notes": "gym",
-      "Type": "Promised"
-    }
-  ],
+  "Dept": [],
   "UpdateTotalsave": [
     {
       "totalsaved": "0",
