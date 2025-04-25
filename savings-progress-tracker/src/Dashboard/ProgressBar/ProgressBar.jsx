@@ -113,7 +113,7 @@ export default function ProgressBar() {
         <div className='fill' id='fill'></div>
         <div className='label' id='label'></div>
       </div>
-      <p>Left: {totalleft}</p>
+      <p className='info'>Left: {totalleft}</p>
     </div>
   );
 }

@@ -1,0 +1,1 @@
+fillElement.style.width = percentage + "%";
