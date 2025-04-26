@@ -72,11 +72,6 @@ export default function ProgressBar() {
     setDeptBar(deptbar);
   }, [totalAdd, totalTake, totallended, totalpromised]);
 
-//Calculate dept impact
-
-
-
-
   //progress bar and dept bar calculations:
 
   useEffect(()=> {
@@ -95,7 +90,24 @@ export default function ProgressBar() {
     label.textContent = `${current} / ${goal}`;
   
 })
+
+  //Store total saved
   
+  useEffect(() => {
+  fetch('http://localhost:3001/Saved/1', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ TotalSaved: totalsaved })
+  })
+  .then(res => {
+    if (!res.ok) throw new Error('Update failed');
+    return res.json();
+  })
+  .then(data => console.log('Updated:', data))
+  .catch(error => console.error('Error updating:', error));
+}, [totalsaved]);
   //html section
   
   const background = {

@@ -1,62 +1,49 @@
 {
   "Add": [
     {
-      "id": "c20e",
+      "id": "e8c6",
+      "Amount": "100000",
+      "Category": "dog",
+      "Notes": ""
+    },
+    {
+      "id": "b28a",
       "Amount": "10000",
       "Category": "dog",
       "Notes": ""
     },
     {
-      "id": "9340",
-      "Amount": "20000",
-      "Category": "cunt",
-      "Notes": ""
-    },
-    {
-      "id": "11a3",
-      "Amount": "500000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "fa5e",
-      "Amount": "10000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "23ae",
-      "Amount": "60000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "5e7a",
-      "Amount": "200000",
+      "id": "4bac",
+      "Amount": "50000",
       "Category": "dog",
       "Notes": ""
     }
   ],
   "Take": [
     {
-      "id": "5936",
-      "Amount": "300000",
-      "Category": "cat",
+      "id": "6404",
+      "Amount": "10000",
+      "Category": "dog",
       "Notes": ""
     },
     {
-      "id": "b6c4",
-      "Amount": "10000",
+      "id": "c5e1",
+      "Amount": "50000",
       "Category": "dog",
-      "Notes": "my fat ass"
+      "Notes": ""
+    },
+    {
+      "id": "09fe",
+      "Amount": "50000",
+      "Category": "dog",
+      "Notes": ""
     }
   ],
   "Dept": [],
-  "UpdateTotalsave": [
+  "Saved": [
     {
-      "totalsaved": "0",
-      "timestamp": "0",
-      "id": "3e74"
+      "id": "1",
+      "TotalSaved": 50000
     }
   ]
 }

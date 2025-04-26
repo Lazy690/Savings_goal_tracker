@@ -8,12 +8,8 @@ function Buttons() {
         const background = {
             margin: "auto",
             width: "500px",
-            
-            
             padding: "10px",
-            background: "#060a14",
-            
-
+            background: "#060a14",        
         }
         
 

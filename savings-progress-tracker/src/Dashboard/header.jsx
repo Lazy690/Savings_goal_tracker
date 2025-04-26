@@ -1,4 +1,4 @@
-
+//import "./savings-progress-tracker/src/index.css";
 function Header() {
     
     
@@ -8,16 +8,11 @@ function Header() {
         background: "#060a14",
         
     }
-    const goalstyle = {
-        fontweight: "500",
-        fontfamily: "inherit",
-        textalign: "center",
-
-    }
+   
     return (
         <div style={background}>
             <header>
-                <h1 style={goalstyle}>Goal</h1>
+                <h1 className="goalstyle">Goal</h1>
                 
                 
             </header>
