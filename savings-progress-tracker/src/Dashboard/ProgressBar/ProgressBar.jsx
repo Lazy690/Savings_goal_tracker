@@ -92,30 +92,26 @@ export default function ProgressBar() {
 })
 
   //Store total saved
-  
   useEffect(() => {
-  fetch('http://localhost:3001/Saved/1', {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ TotalSaved: totalsaved })
-  })
-  .then(res => {
-    if (!res.ok) throw new Error('Update failed');
-    return res.json();
-  })
-  .then(data => console.log('Updated:', data))
-  .catch(error => console.error('Error updating:', error));
-}, [totalsaved]);
+  const interval = setInterval(() => {
+    fetch('http://localhost:3001/Saved')
+      .then(res => res.json())
+      .then(data => {
+        if (data.length > 0) {
+          setTotalsave(Number(data[0].TotalSaved));
+        }
+      });
+  }, 1000); // Poll every 1 second
+
+  return () => clearInterval(interval); // Cleanup on component unmount
+}, []);
   //html section
   
   const background = {
     
     width: "500px",
-   
     padding: "10px",
-    background: "#060a14",
+    
   };
 
   return (

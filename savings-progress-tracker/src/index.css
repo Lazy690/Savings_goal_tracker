@@ -28,6 +28,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -73,8 +79,19 @@ p {
   font-family: inherit;
 }
 
-.BackGroundDiv {
-  background-color: #060a14;
-  height: 500px;
-  width: 500px;
+.AppDiv {
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  height: 100%;
+  margin: 100px;
 }
+
+.BackGroundModalUI {
+   width: 90%;      
+  max-width: 600px;
+  background: #060a14;
+  padding: 20px;
+  border-radius: 8px;
+}
+

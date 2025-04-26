@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './PopupForm.css'; // Import the CSS
+import './Buttons.css'; 
 
 export default function DeptPayment() {
 

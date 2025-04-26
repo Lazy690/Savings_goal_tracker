@@ -5,7 +5,7 @@ function Header() {
     const background = {
         width: "500px",
         padding: "10px",
-        background: "#060a14",
+        
         
     }
    

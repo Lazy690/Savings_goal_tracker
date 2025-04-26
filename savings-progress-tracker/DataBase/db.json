@@ -17,6 +17,12 @@
       "Amount": "50000",
       "Category": "dog",
       "Notes": ""
+    },
+    {
+      "id": "b740",
+      "Amount": "50000",
+      "Category": "dog",
+      "Notes": ""
     }
   ],
   "Take": [
@@ -43,7 +49,7 @@
   "Saved": [
     {
       "id": "1",
-      "TotalSaved": 50000
+      "TotalSaved": 100000
     }
   ]
 }

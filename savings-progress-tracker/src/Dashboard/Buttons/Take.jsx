@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import './PopupForm.css'; // Import the CSS
+import './Buttons.css'; // Import the CSS
 
 export default function Take() {
   const [showForm, setShowForm] = useState(false);
