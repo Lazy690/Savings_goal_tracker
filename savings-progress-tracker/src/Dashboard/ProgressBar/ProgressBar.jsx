@@ -88,6 +88,7 @@ export default function ProgressBar() {
     fill.style.width = percentage + "%";
     deptfill.style.width = deptpercentage + "%";
     label.textContent = `${current} / ${goal}`;
+    console.log(totalsaved)
   
 })
 
@@ -98,12 +99,20 @@ export default function ProgressBar() {
       .then(res => res.json())
       .then(data => {
         if (data.length > 0) {
-          setTotalsave(Number(data[0].TotalSaved));
+          const newTotalSaved = Number(data[0].TotalSaved); // Example: increment it by 1
+          
+          fetch(`http://localhost:3001/Saved/${data[0].id}`, {
+            method: 'PATCH', // or 'PUT' depending on your server
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ TotalSaved: newTotalSaved }),
+          });
         }
       });
-  }, 1000); // Poll every 1 second
+  }, 1000);
 
-  return () => clearInterval(interval); // Cleanup on component unmount
+  return () => clearInterval(interval);
 }, []);
   //html section
   
