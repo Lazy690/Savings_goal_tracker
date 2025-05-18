@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: hsl(0, 0%, 7%);
+  background-color: #131a2f;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,7 +19,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #000acc;
 }
 
 body {
@@ -28,6 +28,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -42,7 +48,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #242424;
+  background-color: #060a14;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -66,3 +72,26 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+p {
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.AppDiv {
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  height: 100%;
+  margin: 100px;
+}
+
+.BackGroundModalUI {
+   width: 90%;      
+  max-width: 600px;
+  background: #060a14;
+  padding: 20px;
+  border-radius: 8px;
+}
+

@@ -72,11 +72,6 @@ export default function ProgressBar() {
     setDeptBar(deptbar);
   }, [totalAdd, totalTake, totallended, totalpromised]);
 
-//Calculate dept impact
-
-
-
-
   //progress bar and dept bar calculations:
 
   useEffect(()=> {
@@ -93,18 +88,39 @@ export default function ProgressBar() {
     fill.style.width = percentage + "%";
     deptfill.style.width = deptpercentage + "%";
     label.textContent = `${current} / ${goal}`;
+    console.log(totalsaved)
   
 })
-  
+
+  //Store total saved
+  useEffect(() => {
+  const interval = setInterval(() => {
+    fetch('http://localhost:3001/Saved')
+      .then(res => res.json())
+      .then(data => {
+        if (data.length > 0) {
+          const newTotalSaved = Number(data[0].TotalSaved); // Example: increment it by 1
+          
+          fetch(`http://localhost:3001/Saved/${data[0].id}`, {
+            method: 'PATCH', // or 'PUT' depending on your server
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ TotalSaved: newTotalSaved }),
+          });
+        }
+      });
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, []);
   //html section
   
   const background = {
-    margin: "40px",
+    
     width: "500px",
-    borderRadius: "8px",
-    border: "1px solid",
     padding: "10px",
-    background: "gray",
+    
   };
 
   return (
@@ -114,7 +130,7 @@ export default function ProgressBar() {
         <div className='fill' id='fill'></div>
         <div className='label' id='label'></div>
       </div>
-      <p>Left: {totalleft}</p>
+      <p className='info'>Left: {totalleft}</p>
     </div>
   );
 }

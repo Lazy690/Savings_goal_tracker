@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
-import './PopupForm.css'; // Import the CSS
+import React, { useState} from 'react';
+import './Buttons.css'; // Import the CSS
 
 export default function Take() {
   const [showForm, setShowForm] = useState(false);
+  const [TotalSave, setTotalsave] = useState(null);
+  
+  
+ 
+  const handleOpen = () => {setShowForm(true);
+    fetch('http://localhost:3001/Saved')
+      .then(res => res.json())
+      .then(data => {
+      const fetched = data.reduce((acc, entry) => acc + Number(entry.TotalSaved), 0);
+      setTotalsave(fetched)});
+     
+      }
+  
 
-  const handleOpen = () => setShowForm(true);
+ 
+
   const handleClose = () => setShowForm(false);
 
   const handleSubmit = (e) => {
@@ -12,7 +26,11 @@ export default function Take() {
     let amount = document.getElementById("amount");
     let amountvalue = amount.value
     
-
+    if (amountvalue > TotalSave) {
+      e.preventDefault();
+      alert("Eto Bleeh")
+      document.getElementById("form").reset();      
+    } else {
     let category = document.getElementById("category");
     let categoryvalue = category.value
     
@@ -27,6 +45,7 @@ export default function Take() {
       body: JSON.stringify({ Amount: amountvalue, Category: categoryvalue, Notes: notesvalue}) 
     })
     handleClose();
+    }
   };
 
   return (
@@ -41,8 +60,11 @@ export default function Take() {
         <div className="overlay">
           <div className="modal">
             <h2>Take Money</h2>
-            <form onSubmit={handleSubmit}>
+            <form id="form" onSubmit={handleSubmit}>
             <div>
+                <label>
+                  You have <b>{TotalSave}</b> saved.
+                </label><br></br>
                 <label>
                   Amount:
                 </label>

@@ -1,18 +1,18 @@
+//import "./savings-progress-tracker/src/index.css";
 function Header() {
     
     
     const background = {
-        margin: "40px",
         width: "500px",
-        borderRadius: "8px",
-        border: "1px solid",
         padding: "10px",
-        background: "gray",
+        
+        
     }
+   
     return (
         <div style={background}>
             <header>
-                <h1>Goal</h1>
+                <h1 className="goalstyle">Goal</h1>
                 
                 
             </header>

@@ -2,56 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Progress Bar Example</title>
-  <style>
-    .bar {
-      width: 300px;
-      height: 30px;
-      background-color: #ddd;
-      border-radius: 15px;
-      overflow: hidden;
-      position: relative;
-    }
+  <title>Positioning</title>
+ 
+  <link rel="stylesheet" href="style.css">
 
-    .fill {
-      height: 100%;
-      background-color: #4caf50;
-      width: 0;
-      transition: width 0.5s ease;
-    }
-
-    .label {
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      top: 0;
-      line-height: 30px;
-      font-weight: bold;
-      color: black;
-    }
-  </style>
 </head>
+
 <body>
-
-  <h2>Progress Toward Your Goal</h2>
-  <div class="bar">
-    <div class="fill" id="fill"></div>
-    <div class="label" id="label"></div>
-  </div>
-
-  <script>
-    // Example values
-    const goal = 10000;
-    const current = 7500;
-
-    const percentage = Math.min((current / goal) * 100, 100).toFixed(1);
-
-    const fill = document.getElementById("fill");
-    const label = document.getElementById("label");
-
-    fill.style.width = percentage + "%";
-    label.textContent = `${current} / ${goal}`;
-  </script>
+  <h1>
+    this is my website
+  </h1>
+  
 
 </body>
+
 </html>
