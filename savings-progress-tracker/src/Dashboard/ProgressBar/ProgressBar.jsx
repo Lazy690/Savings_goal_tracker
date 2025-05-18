@@ -79,7 +79,7 @@ export default function ProgressBar() {
     const current = totalsaved;
     const deptcurrent = deptbar;
 
-    const percentage = Math.min((current / goal) * 100, 100).toFixed(1);
+    const percentage = Math.floor(Math.min((current / goal) * 100, 100));
     const deptpercentage = Math.min((deptcurrent / goal) * 100, 100).toFixed(1);
     const fill = document.getElementById("fill");
     const deptfill = document.getElementById("deptfill");
@@ -87,7 +87,7 @@ export default function ProgressBar() {
 
     fill.style.width = percentage + "%";
     deptfill.style.width = deptpercentage + "%";
-    label.textContent = `${current} / ${goal}`;
+    label.textContent = `${percentage}%`;
     console.log(totalsaved)
   
 })
@@ -120,17 +120,33 @@ export default function ProgressBar() {
     
     width: "500px",
     padding: "10px",
+    marginRight: "15px"
     
   };
 
   return (
     <div style={background}>
+
+
+      <div className='display'>
+        <div className='progress-info'>
+          <span className='saved-display'>Saved:</span>
+          <span className='saved-value-display'>Kz{totalsaved}</span>
+        </div>
+
+        <div className='progress-info'>
+          <span className='saved-display'>Left:</span>
+          <span className='saved-value-display'>Kz{totalleft}</span>
+        </div>
+      </div>  
+
+
       <div className='bar'>
         <div className='deptfill' id='deptfill'></div>
         <div className='fill' id='fill'></div>
         <div className='label' id='label'></div>
       </div>
-      <p className='info'>Left: {totalleft}</p>
+      
     </div>
   );
 }

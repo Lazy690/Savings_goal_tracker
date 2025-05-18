@@ -59,6 +59,18 @@
       "Amount": "40000",
       "Category": "dog",
       "Notes": ""
+    },
+    {
+      "id": "30a9",
+      "Amount": "100",
+      "Category": "cat",
+      "Notes": ""
+    },
+    {
+      "id": "0935",
+      "Amount": "100",
+      "Category": "cat",
+      "Notes": ""
     }
   ],
   "Take": [
@@ -79,9 +91,41 @@
       "Amount": "50000",
       "Category": "dog",
       "Notes": ""
+    },
+    {
+      "id": "2c61",
+      "Amount": "272",
+      "Category": "cat",
+      "Notes": ""
+    },
+    {
+      "id": "8f4f",
+      "Amount": "100000",
+      "Category": "cat",
+      "Notes": ""
+    },
+    {
+      "id": "5493",
+      "Amount": "70072",
+      "Category": "cat",
+      "Notes": ""
+    },
+    {
+      "id": "dc96",
+      "Amount": "100272",
+      "Category": "adsdsdfd",
+      "Notes": ""
     }
   ],
-  "Dept": [],
+  "Dept": [
+    {
+      "id": "7a18",
+      "Amount": "20000",
+      "Who": "dog",
+      "Notes": "",
+      "Type": "Lended"
+    }
+  ],
   "Saved": [
     {
       "id": "1",
