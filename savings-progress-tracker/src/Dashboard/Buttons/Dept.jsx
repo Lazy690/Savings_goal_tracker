@@ -82,7 +82,7 @@ export default function Dept() {
                   />
 
                   <div className="dropdown">
-                    <button type="button" className="dropbtn">▼</button>
+                    <button type="button" className='open-btn'>▼</button>
                     <div className="dropdown-content">
                       <div onClick={() => handleSelect('Lended')}>Lended</div>
                       <div onClick={() => handleSelect('Promised')}>Promised</div>
@@ -98,8 +98,8 @@ export default function Dept() {
                 <input type="text" id="notes"/>
               </div>
               <br />
-              <button type="submit">Add</button>
-              <button onClick={handleClose}>Cancel</button>
+              <button type="submit" className='open-btn'>Add</button>
+              <button onClick={handleClose} className='open-btn'>Cancel</button>
             </form>
           </div>
         </div>

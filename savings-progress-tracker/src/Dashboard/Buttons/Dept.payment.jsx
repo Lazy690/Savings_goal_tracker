@@ -40,7 +40,7 @@ export default function DeptPayment() {
                 {deptlist.map(Dept => (
                 <li key={Dept.id} className="deptlist">
                   <span>{Dept.Amount} - {Dept.Type} - {Dept.Who} - {Dept.Notes}</span>
-                  <button onClick={() => {
+                  <button className='open-btn' onClick={() => {
                     setPendingDeleteId(Dept.id);
                     handleDeleteOpen();
                   }}>❌</button>
@@ -64,12 +64,12 @@ export default function DeptPayment() {
                             handleDeleteClose();
                           });
                       }}
-                      className="deletebuttons"
+                      className='open-btn'
                     >
                       Yes
                     </button>
 
-                    <button onClick={handleDeleteClose} className="deletebuttons">No</button>
+                    <button onClick={handleDeleteClose} className='open-btn'>No</button>
                   </div>   
                 </div>
 
@@ -77,7 +77,7 @@ export default function DeptPayment() {
             <form onSubmit={handleClose}>
               
               <br />
-              <button>Close</button>
+              <button className='open-btn'>Close</button>
             </form>
           </div>
         </div>

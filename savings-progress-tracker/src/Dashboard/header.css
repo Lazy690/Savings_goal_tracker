@@ -1,0 +1,19 @@
+
+.buton-wrap {
+    padding-top: 1px;
+    margin-left:350px;
+    
+}
+
+.goal-button {
+    margin-left: 10px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: #131A2E;
+    transition: border-color 0.25s;
+    cursor: pointer;
+    font-size: larger;
+}
+.goal-button:hover {
+    border: 1px #fff solid;
+  }

@@ -28,7 +28,7 @@ export default function Take() {
     
     if (amountvalue > TotalSave) {
       e.preventDefault();
-      alert("Eto Bleeh")
+      alert("Value exedes your Total.")
       document.getElementById("form").reset();      
     } else {
     let category = document.getElementById("category");
@@ -48,6 +48,17 @@ export default function Take() {
     }
   };
 
+  //to format huge numbers:
+
+function formatWithDots(value) {
+  const number = Number(value);
+  if (isNaN(number)) return value; // Fallback if not a number
+
+  const parts = number.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return parts.join(",");
+}
+
   return (
     <div>
       {/* Open button */}
@@ -63,7 +74,7 @@ export default function Take() {
             <form id="form" onSubmit={handleSubmit}>
             <div>
                 <label>
-                  You have <b>{TotalSave}</b> saved.
+                  You have <b>{formatWithDots(TotalSave)}</b> saved.
                 </label><br></br>
                 <label>
                   Amount:
@@ -84,8 +95,8 @@ export default function Take() {
                 <input type="text" id="notes" />
               </div>
               <br />
-              <button type="submit">Take</button>
-              <button onClick={handleClose}>Cancel</button>
+              <button className='open-btn' type="submit">Take</button>
+              <button className='open-btn' onClick={handleClose}>Cancel</button>
             </form>
           </div>
         </div>

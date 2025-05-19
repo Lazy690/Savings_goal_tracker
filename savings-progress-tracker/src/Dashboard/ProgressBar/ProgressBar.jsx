@@ -92,28 +92,41 @@ export default function ProgressBar() {
   
 })
 
-  //Store total saved
-  useEffect(() => {
+ // Store total saved
+useEffect(() => {
   const interval = setInterval(() => {
     fetch('http://localhost:3001/Saved')
       .then(res => res.json())
       .then(data => {
         if (data.length > 0) {
-          const newTotalSaved = Number(data[0].TotalSaved); // Example: increment it by 1
-          
+          // Use the totalsaved variable to update the TotalSaved value
           fetch(`http://localhost:3001/Saved/${data[0].id}`, {
             method: 'PATCH', // or 'PUT' depending on your server
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ TotalSaved: newTotalSaved }),
+            body: JSON.stringify({ TotalSaved: totalsaved }),
           });
         }
       });
   }, 1000);
 
   return () => clearInterval(interval);
-}, []);
+}, [totalsaved]); // Add totalsaved as a dependency
+
+//to format huge numbers:
+
+function formatWithDots(value) {
+  const number = Number(value);
+  if (isNaN(number)) return value; // Fallback if not a number
+
+  const parts = number.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return parts.join(",");
+}
+
+
+
   //html section
   
   const background = {
@@ -131,12 +144,12 @@ export default function ProgressBar() {
       <div className='display'>
         <div className='progress-info'>
           <span className='saved-display'>Saved:</span>
-          <span className='saved-value-display'>Kz{totalsaved}</span>
+          <span className='saved-value-display'>Kz{formatWithDots(totalsaved)}</span>
         </div>
 
         <div className='progress-info'>
           <span className='saved-display'>Left:</span>
-          <span className='saved-value-display'>Kz{totalleft}</span>
+          <span className='saved-value-display'>Kz{formatWithDots(totalleft)}</span>
         </div>
       </div>  
 

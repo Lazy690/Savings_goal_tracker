@@ -62,8 +62,8 @@ export default function Add() {
                 <input type="text" id="notes"/>
               </div>
               <br />
-              <button type="submit">Add</button>
-              <button onClick={handleClose}>Cancel</button>
+              <button type="submit" className='open-btn'>Add</button>
+              <button onClick={handleClose} className='open-btn'>Cancel</button>
             </form>
           </div>
         </div>

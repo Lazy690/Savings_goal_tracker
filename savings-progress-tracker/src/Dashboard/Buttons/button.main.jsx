@@ -6,17 +6,12 @@ import "./Buttons.css";
 
 function Buttons() {
     
-        const background = {
-            margin: "auto",
-            width: "500px",
-            padding: "10px",
-                    
-        }
+       
         
 
         
     return(
-        <div style= {background}>
+        <div>
             
             <Add/>
             <Take/>
