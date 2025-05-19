@@ -1,25 +1,28 @@
-import Add from "./Add";
-import Take from "./Take";
-import Dept from "./Dept";
-import DeptPayment from "./Dept.payment";
+import Add from "./Colomn-01/Add";
+import Take from "./Colomn-01/Take";
+import Dept from "./Colomn-01/Dept";
+import DeptPayment from "./Colomn-01/Dept.payment";
+import Records from "./Colomn-02/record";
 import "./Buttons.css";
 
-function Buttons() {
+export default function Buttons() {
     
        
         
 
         
     return(
-        <div>
-            
-            <Add/>
-            <Take/>
-            <Dept/>
-            <DeptPayment/>
-            
+        <div className="Button-container">
+            <div className="colomn-buttons">
+                <Add/>
+                <Take/>
+                <Dept/>
+                <DeptPayment/>
+            </div>
+            <div className="colomn-buttons">
+                <Records/>
+            </div>
         </div>
     );
 }
 
-export default Buttons

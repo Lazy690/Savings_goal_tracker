@@ -41,6 +41,7 @@ h1 {
   line-height: 1.1;
 }
 
+/* temporary name for buttons */
 .open-btn{
   border-radius: 8px;
   border: 1px solid transparent;
@@ -48,9 +49,10 @@ h1 {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #060a14;
+  background-color: #131A2E;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin: 5px;
 }
 .open-btn:hover {
   border-color: #ffffff;
@@ -72,6 +74,7 @@ h1 {
     background-color: #f9f9f9;
   }
 }
+/* temporary name for buttons */
 
 p {
   font-size: 1em;
