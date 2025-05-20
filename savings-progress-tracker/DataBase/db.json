@@ -101,6 +101,12 @@
       "Amount": "1000000",
       "Category": "cat",
       "Notes": ""
+    },
+    {
+      "id": "74a9",
+      "Amount": "700000",
+      "Category": "cat",
+      "Notes": ""
     }
   ],
   "Take": [
@@ -163,13 +169,19 @@
       "Amount": "500000",
       "Category": "cat",
       "Notes": ""
+    },
+    {
+      "id": "7959",
+      "Amount": "500000",
+      "Category": "cat",
+      "Notes": ""
     }
   ],
   "Dept": [],
   "Saved": [
     {
       "id": "1",
-      "TotalSaved": 500000
+      "TotalSaved": 700000
     }
   ]
 }
