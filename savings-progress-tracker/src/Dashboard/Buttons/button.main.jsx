@@ -2,7 +2,7 @@ import Add from "./Colomn-01/Add";
 import Take from "./Colomn-01/Take";
 import Dept from "./Colomn-01/Dept";
 import DeptPayment from "./Colomn-01/Dept.payment";
-import Records from "./Colomn-02/record";
+import RecordButton from "./Colomn-02/record-button";
 import "./Buttons.css";
 
 export default function Buttons() {
@@ -20,7 +20,7 @@ export default function Buttons() {
                 <DeptPayment/>
             </div>
             <div className="colomn-buttons">
-                <Records/>
+                <RecordButton/>
             </div>
         </div>
     );

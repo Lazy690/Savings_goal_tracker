@@ -1,7 +1,6 @@
-import Header from "./Dashboard/header";
-import Footer from "./Dashboard/footer";
-import Buttons from "./Dashboard/Buttons/button.main";
-import ProgressBar from "./Dashboard/ProgressBar/ProgressBar";
+import { Routes, Route, Link } from "react-router-dom";
+import Records from "./Records/records";
+import Dashboard from "./Dashboard/Dashboard-main.jsx"
 import "./index.css";
 
 function App() {
@@ -10,15 +9,14 @@ function App() {
   return(
     <div className="Appdiv">
       <div className="BackGroundModalUI">
-        <>
-        <Header/>
-        <ProgressBar/>
-        <Buttons/>
-        </>
-        
+       
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/records" element={<Records />} />
+        </Routes>
       
       </div> 
-      <Footer/>
+     
         
     </div>
   );
