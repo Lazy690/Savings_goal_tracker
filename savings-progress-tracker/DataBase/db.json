@@ -177,11 +177,19 @@
       "Notes": ""
     }
   ],
-  "Dept": [],
+  "Dept": [
+    {
+      "id": "1d9c",
+      "Amount": "100000",
+      "Who": "chackitson",
+      "Notes": "",
+      "Type": "Lended"
+    }
+  ],
   "Saved": [
     {
       "id": "1",
-      "TotalSaved": 700000
+      "TotalSaved": 600000
     }
   ]
 }

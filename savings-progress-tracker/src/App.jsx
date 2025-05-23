@@ -1,5 +1,5 @@
 import { Routes, Route, Link } from "react-router-dom";
-import Records from "./Records/records";
+import Records from "./Records/records.jsx";
 import Dashboard from "./Dashboard/Dashboard-main.jsx"
 import "./index.css";
 

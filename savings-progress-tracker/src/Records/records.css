@@ -1,0 +1,26 @@
+.record-header {
+    display: flex;
+    align-content: row;
+    
+}
+
+.exit-record {
+    margin-left: 250px;
+    margin-top: 37px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: #060A14;
+    transition: border-color 0.25s;
+    cursor: pointer;
+    font-size: larger;
+   
+}
+
+.record-window {
+    background-color: #131A2E;
+    width: 576px;
+    height: 600px;
+    border-radius: 10px;
+    margin-top: 20px;
+   
+}
