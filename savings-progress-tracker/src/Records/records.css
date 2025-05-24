@@ -1,6 +1,7 @@
 .record-header {
     display: flex;
     align-content: row;
+    cursor: default;
     
 }
 
@@ -20,7 +21,8 @@
     background-color: #131A2E;
     width: 576px;
     height: 600px;
-    border-radius: 10px;
+    border-radius: 20px;
     margin-top: 20px;
+    z-index: 1000;
    
 }

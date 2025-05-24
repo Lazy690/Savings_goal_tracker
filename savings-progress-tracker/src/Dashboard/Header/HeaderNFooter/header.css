@@ -1,4 +1,5 @@
 
+
 .buton-wrap {
     padding-top: 1px;
     margin-left:340px;
@@ -7,6 +8,7 @@
 
 .goal-button {
     margin-left: 10px;
+    margin-bottom: 10px;
     border: 1px solid transparent;
     border-radius: 10px;
     background-color: #131A2E;
@@ -17,3 +19,49 @@
 .goal-button:hover {
     border: 1px #fff solid;
   }
+
+/*Theme Section*/
+
+.theme-overlay {
+   
+    position: absolute;   
+    background-color: #131A2E;
+    padding: 15px;
+    padding-right: 20px;
+    border-radius: 30px;
+    z-index: 1000;
+    right: 55px;
+    
+
+}
+.color {
+    background-color: aqua;
+    height: 50px;
+    width: 50px;
+    border-radius: 15px;
+    cursor: pointer;
+    border: 1px transparent solid;
+    transition: border-color 0.25s ease;
+    transition: height 0.25s ease;
+    transition: width 0.25s ease;
+    margin: 2px;
+}
+.color:hover {
+    border: 2px #fff solid;
+    height: 55px;
+    width: 55px;
+}
+
+/*color displayed in the buttons section*/
+
+/*Dark Mode*/
+.color-dark-blue {background-color: #26C4F4;}
+.color-dark-red {background-color: #f42626}
+.color-dark-yellow {background-color: #d5f426}
+
+/*Light Mode*/
+
+.color-light-blue {background-color: #26C4F4;}
+.color-light-red {background-color: #f42626}
+.color-light-yellow {background-color: #d5f426}
+/*color displayed in the buttons section*/

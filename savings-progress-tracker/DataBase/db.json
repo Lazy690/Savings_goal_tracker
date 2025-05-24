@@ -179,8 +179,15 @@
   ],
   "Dept": [
     {
-      "id": "1d9c",
-      "Amount": "100000",
+      "id": "aa16",
+      "Amount": "20000",
+      "Who": "dog",
+      "Notes": "",
+      "Type": "Lended"
+    },
+    {
+      "id": "baab",
+      "Amount": "10000",
       "Who": "chackitson",
       "Notes": "",
       "Type": "Lended"
@@ -189,7 +196,7 @@
   "Saved": [
     {
       "id": "1",
-      "TotalSaved": 600000
+      "TotalSaved": 670000
     }
   ]
 }
