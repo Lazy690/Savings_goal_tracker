@@ -1,0 +1,3 @@
+lite mode colors: base- #FAFAFA and content- #DDE4F0
+
+daek mode colors: base- #131a2f and content- #060a14

@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./records.css";
+import React from 'react';
+
 
 export default function Recordsheader() {
 const navigate = useNavigate();

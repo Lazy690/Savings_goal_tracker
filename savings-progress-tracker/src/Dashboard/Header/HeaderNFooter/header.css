@@ -40,7 +40,7 @@
     width: 50px;
     border-radius: 15px;
     cursor: pointer;
-    border: 1px transparent solid;
+    border: 1px #131A2E solid;
     transition: border-color 0.25s ease;
     transition: height 0.25s ease;
     transition: width 0.25s ease;
@@ -48,20 +48,20 @@
 }
 .color:hover {
     border: 2px #fff solid;
-    height: 55px;
-    width: 55px;
+    
+    
 }
 
 /*color displayed in the buttons section*/
 
 /*Dark Mode*/
-.color-dark-blue {background-color: #26C4F4;}
-.color-dark-red {background-color: #f42626}
-.color-dark-yellow {background-color: #d5f426}
+.color-dark-blue {background-image: linear-gradient(to top left, #060A14 50%, #26C4F4 50%);}
+.color-dark-red {background-image: linear-gradient(to top left, #060A14 50%, #f42626 50%);}
+.color-dark-yellow {background-image: linear-gradient(to top left, #060a14 50%, #d5f426 50%);}
 
 /*Light Mode*/
 
-.color-light-blue {background-color: #26C4F4;}
-.color-light-red {background-color: #f42626}
-.color-light-yellow {background-color: #d5f426}
+.color-light-blue {background-image: linear-gradient(to top left, #DDE4F0 50%, #26C4F4 50%);}
+.color-light-red {background-image: linear-gradient(to top left, #DDE4F0 50%, #f42626 50%);}
+.color-light-yellow {background-image: linear-gradient(to top left, #DDE4F0  50%, #d5f426 50%);}
 /*color displayed in the buttons section*/

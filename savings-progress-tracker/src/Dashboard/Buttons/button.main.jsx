@@ -1,3 +1,4 @@
+import React from 'react';
 import Add from "./Colomn-01/Add";
 import Take from "./Colomn-01/Take";
 import Dept from "./Colomn-01/Dept";

@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from "./Header/HeaderNFooter/header";
 import Footer from "./Header/HeaderNFooter/footer";
 import Buttons from "./Buttons/button.main";

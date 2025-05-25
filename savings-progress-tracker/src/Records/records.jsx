@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Recordsheader from "./records-header";
 import Recordcontent from "./record-content";
 

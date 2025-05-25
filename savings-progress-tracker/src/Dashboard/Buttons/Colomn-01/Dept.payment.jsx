@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import '../Buttons.css'; 
+import React from 'react';
+
 
 export default function DeptPayment() {
 

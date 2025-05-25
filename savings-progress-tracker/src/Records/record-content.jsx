@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import "./records.css";
+import React from 'react';
+
 
 export default function Recordcontent() {
 
@@ -12,7 +14,8 @@ export default function Recordcontent() {
   const [deptlist, setDeptList] = useState([]);
   const [pendingDeleteId, setPendingDeleteId] = useState(null);
 
-  const handleOpen = () => setShowDept(true);
+  //Open and close handeling
+  const handleOpenDept = () => setShowDept(true);
   const handleClose = () => setShowDept(false);
 
   // Fetch the list of depts
