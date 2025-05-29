@@ -1,202 +1,37 @@
 {
   "Add": [
     {
-      "id": "e8c6",
+      "id": "30c7",
       "Amount": "100000",
-      "Category": "dog",
+      "Category": "cat",
       "Notes": ""
     },
     {
-      "id": "b28a",
-      "Amount": "10000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "4bac",
-      "Amount": "50000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "b740",
-      "Amount": "50000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "f7d8",
-      "Amount": "200000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "f190",
-      "Amount": "200000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "c718",
-      "Amount": "100000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "0eaf",
-      "Amount": "100000",
-      "Category": "cunt",
-      "Notes": ""
-    },
-    {
-      "id": "b726",
-      "Amount": "10000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "8f40",
-      "Amount": "40000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "30a9",
+      "id": "e8a1",
       "Amount": "100",
       "Category": "cat",
       "Notes": ""
     },
     {
-      "id": "0935",
-      "Amount": "100",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "b724",
-      "Amount": "28",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "8b36",
-      "Amount": "700",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "7a4f",
-      "Amount": "20000",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "9e4a",
-      "Amount": "100000",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "6280",
-      "Amount": "1000000",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "74a9",
-      "Amount": "700000",
+      "id": "0575",
+      "Amount": "10000",
       "Category": "cat",
       "Notes": ""
     }
   ],
   "Take": [
     {
-      "id": "6404",
-      "Amount": "10000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "c5e1",
-      "Amount": "50000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "09fe",
-      "Amount": "50000",
-      "Category": "dog",
-      "Notes": ""
-    },
-    {
-      "id": "2c61",
-      "Amount": "272",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "8f4f",
-      "Amount": "100000",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "5493",
-      "Amount": "70072",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "dc96",
-      "Amount": "100272",
-      "Category": "adsdsdfd",
-      "Notes": ""
-    },
-    {
-      "id": "0cdb",
-      "Amount": "580312",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "0ac0",
-      "Amount": "20000",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "61d9",
-      "Amount": "500000",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "7959",
-      "Amount": "500000",
+      "id": "8a7f",
+      "Amount": "100",
       "Category": "cat",
       "Notes": ""
     }
   ],
-  "Dept": [
-    {
-      "id": "aa16",
-      "Amount": "20000",
-      "Who": "dog",
-      "Notes": "",
-      "Type": "Lended"
-    },
-    {
-      "id": "baab",
-      "Amount": "10000",
-      "Who": "chackitson",
-      "Notes": "",
-      "Type": "Lended"
-    }
-  ],
+  "Dept": [],
   "Saved": [
     {
       "id": "1",
-      "TotalSaved": 670000
+      "TotalSaved": 110000
     }
   ]
 }

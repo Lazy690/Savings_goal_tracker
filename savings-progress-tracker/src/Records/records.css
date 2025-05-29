@@ -18,11 +18,38 @@
 }
 
 .record-window {
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start;
+    
+
     background-color: #131A2E;
     width: 576px;
     height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
     border-radius: 20px;
     margin-top: 20px;
     z-index: 1000;
-   
+  
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  
+  .record-window * {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+.record-list {
+  background-color: #060A14;
+  border-radius: 20px;
+  padding: 10px;
+  width: 100%; /* or a fixed width if you want a narrower list */
+  max-width: 500px;
+  margin-right: 25px;
+  
 }
+  

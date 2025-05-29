@@ -1,22 +1,35 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import "./records.css";
-import React from 'react';
-
 
 export default function Recordcontent() {
-
-    //Show the lists
-  const [showdept, setShowDept] = useState(false);
-  const [showdadd, setShowAdd] = useState(false);
-  const [showdtake, setShowTake] = useState(false);
-
-
+  const [activeTab, setActiveTab] = useState(null); // Tracks the active tab: "Dept", "Add", or "Take"
   const [deptlist, setDeptList] = useState([]);
+  const [addlist, setAddList] = useState([]);
+  const [takelist, setTakeList] = useState([]);
+  
   const [pendingDeleteId, setPendingDeleteId] = useState(null);
+  //delete functions Add
+  
+  const [showDeleteAdd, setShowDeleteAdd] = useState(false);
 
-  //Open and close handeling
-  const handleOpenDept = () => setShowDept(true);
-  const handleClose = () => setShowDept(false);
+  const handleDeleteOpenAdd = () => setShowDeleteAdd(true);
+  const handleDeleteCloseAdd = () => setShowDeleteAdd(false);
+  
+  //delete function Take
+
+  const [showDeleteTake, setShowDeleteTake] = useState(false);
+
+  const handleDeleteOpenTake = () => setShowDeleteTake(true);
+  const handleDeleteCloseTake = () => setShowDeleteTake(false);
+
+  //delete functions Dept
+  
+  const [showDeleteDept, setShowDeleteDept] = useState(false);
+
+  const handleDeleteOpenDept = () => setShowDeleteDept(true);
+  const handleDeleteCloseDept = () => setShowDeleteDept(false);
+  
 
   // Fetch the list of depts
   useEffect(() => {
@@ -29,40 +42,90 @@ export default function Recordcontent() {
   useEffect(() => {
     fetch('http://localhost:3001/Add')
       .then(res => res.json())
-      .then(data => setDeptList(data));
+      .then(data => setAddList(data));
   }, []);
 
   // Fetch the list of take
   useEffect(() => {
-    fetch('http://localhost:3001/Dept')
+    fetch('http://localhost:3001/Take')
       .then(res => res.json())
-      .then(data => setDeptList(data));
+      .then(data => setTakeList(data));
   }, []);
 
   return (
     <div>
       <div className="record-tab">
         <div>
-          <button className="open-btn" onClick={handleOpen}>Add</button>
-          <button className="open-btn" onClick={handleOpen}>Take</button>
-          <button className="open-btn" onClick={handleOpen}>Dept</button>
+          <button className="open-btn" onClick={() => setActiveTab("Add")}>Add</button>
+          <button className="open-btn" onClick={() => setActiveTab("Take")}>Take</button>
+          <button className="open-btn" onClick={() => setActiveTab("Dept")}>Dept</button>
         </div>
       </div>
       <div className="record-content">
         <div className="record-window">
-          {/* Open Dept List */}
-          {showdept && (
+          {/* Render Add List */}
+          {activeTab === "Add" && (
             <ul>
-              {deptlist.map((Dept) => (
-                <li key={Dept.id} className="deptlist">
-                  <span>
-                    {Dept.Amount} - {Dept.Type} - {Dept.Who} - {Dept.Notes}
+              {addlist.map((Add) => (
+                <li key={Add.id} className='deptlist record-list'>
+                  
+                  <span className='record-list'>
+                    {Add.Amount} - {Add.Category} - {Add.Notes}
+                  </span>
+                  <button
+                    className="open-btn"
+                    onClick={() => { 
+                      setPendingDeleteId(Add.id);
+                      handleDeleteOpenAdd();
+                     
+                    }}
+                  >
+                    ❌
+                  
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+          {showDeleteAdd && (
+                <div className="overlay">
+                  <div className="modal">
+                    <h2>Are you sure you want to delete this Add?</h2>
+                    <button
+                        onClick={() => {
+                        fetch(`http://localhost:3001/Add/${pendingDeleteId}`, {
+                          method: 'DELETE',
+                        })
+                          .then(() => {
+                            setDeptList(prev => prev.filter(d => d.id !== pendingDeleteId));
+                            setPendingDeleteId(null);
+                            handleDeleteCloseAdd();
+                          });
+                      }}
+                      className='open-btn'
+                    >
+                      Yes
+                    </button>
+
+                    <button onClick={handleDeleteCloseAdd} className='open-btn'>No</button>
+                  </div>   
+                </div>
+
+            )}
+
+          {/* Render Take List */}
+          {activeTab === "Take" && (
+            <ul>
+              {takelist.map((Take) => (
+                <li key={Take.id} className="deptlist record-list">
+                  <span className='record-list'>
+                    {Take.Amount} - {Take.Category} - {Take.Notes}
                   </span>
                   <button
                     className="open-btn"
                     onClick={() => {
-                      setPendingDeleteId(Dept.id);
-                      handleClose(); // Optionally close the list after delete
+                      setPendingDeleteId(Take.id);
+                      handleDeleteOpenTake();
                     }}
                   >
                     ❌
@@ -71,19 +134,45 @@ export default function Recordcontent() {
               ))}
             </ul>
           )}
-          {/* Open Add List */}
-          {showdept && (
+           {showDeleteTake && (
+                <div className="overlay">
+                  <div className="modal">
+                    <h2>Are you sure you want to delete this Take?</h2>
+                    <button
+                        onClick={() => {
+                        fetch(`http://localhost:3001/Take/${pendingDeleteId}`, {
+                          method: 'DELETE',
+                        })
+                          .then(() => {
+                            setDeptList(prev => prev.filter(d => d.id !== pendingDeleteId));
+                            setPendingDeleteId(null);
+                            handleDeleteCloseTake();
+                          });
+                      }}
+                      className='open-btn'
+                    >
+                      Yes
+                    </button>
+
+                    <button onClick={handleDeleteCloseTake} className='open-btn'>No</button>
+                  </div>   
+                </div>
+
+            )}
+          {/* Render Dept List */}
+          {activeTab === "Dept" && (
             <ul>
               {deptlist.map((Dept) => (
-                <li key={Dept.id} className="deptlist">
-                  <span>
+                <li key={Dept.id} className="deptlist record-list">
+                  <span className='record-list'>
                     {Dept.Amount} - {Dept.Type} - {Dept.Who} - {Dept.Notes}
                   </span>
                   <button
                     className="open-btn"
                     onClick={() => {
                       setPendingDeleteId(Dept.id);
-                      handleClose(); // Optionally close the list after delete
+                      handleDeleteOpenDept();
+                      
                     }}
                   >
                     ❌
@@ -92,27 +181,31 @@ export default function Recordcontent() {
               ))}
             </ul>
           )}
-          {/* Open Take List */}
-          {showdept && (
-            <ul>
-              {deptlist.map((Dept) => (
-                <li key={Dept.id} className="deptlist">
-                  <span>
-                    {Dept.Amount} - {Dept.Type} - {Dept.Who} - {Dept.Notes}
-                  </span>
-                  <button
-                    className="open-btn"
-                    onClick={() => {
-                      setPendingDeleteId(Dept.id);
-                      handleClose(); // Optionally close the list after delete
-                    }}
-                  >
-                    ❌
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
+          {showDeleteDept && (
+                <div className="overlay">
+                  <div className="modal">
+                    <h2>Are you sure you want to delete this dept?</h2>
+                    <button
+                        onClick={() => {
+                        fetch(`http://localhost:3001/Dept/${pendingDeleteId}`, {
+                          method: 'DELETE',
+                        })
+                          .then(() => {
+                            setDeptList(prev => prev.filter(d => d.id !== pendingDeleteId));
+                            setPendingDeleteId(null);
+                            handleDeleteCloseDept();
+                          });
+                      }}
+                      className='open-btn'
+                    >
+                      Yes
+                    </button>
+
+                    <button onClick={handleDeleteCloseDept} className='open-btn'>No</button>
+                  </div>   
+                </div>
+
+            )}
         </div>
       </div>
     </div>
