@@ -1,4 +1,6 @@
 import React, { useState} from 'react';
+import { collection, onSnapshot, addDoc } from 'firebase/firestore';
+import { db } from '../../../firebase.js'; 
 import '../Buttons.css';    
 
 export default function Take() {
@@ -7,13 +9,16 @@ export default function Take() {
   
   
  
-  const handleOpen = () => {setShowForm(true);
-    fetch('http://localhost:3001/Saved')
-      .then(res => res.json())
-      .then(data => {
+  const handleOpen = () => {
+    setShowForm(true);
+    const unsubscribe = onSnapshot(collection(db, 'Saved'), (snapshot) => {
+      const data = snapshot.docs.map((doc) => doc.data());
       const fetched = data.reduce((acc, entry) => acc + Number(entry.TotalSaved), 0);
-      setTotalsave(fetched)});
-     
+      setTotalsave(fetched); // Update the TotalSave state in real-time
+    });
+  
+    // Optionally, you can clean up the listener when the form is closed
+    return () => unsubscribe();
       }
   
 
@@ -21,8 +26,8 @@ export default function Take() {
 
   const handleClose = () => setShowForm(false);
 
-  const handleSubmit = (e) => {
-    
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     let amount = document.getElementById("amount");
     let amountvalue = amount.value
     
@@ -31,6 +36,9 @@ export default function Take() {
       alert("Value exedes your Total.")
       document.getElementById("form").reset();      
     } else {
+      handleClose();
+      
+      
     let category = document.getElementById("category");
     let categoryvalue = category.value
     
@@ -60,14 +68,19 @@ export default function Take() {
         let datevalue = currentMonth + " " + currentDay + 
                                                 ", " + currentYear;
 
-    e.preventDefault();
+    
 
-    fetch('http://localhost:3001/Take', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ Amount: amountvalue, Category: categoryvalue, Date: datevalue, Notes: notesvalue}) 
-    })
-    handleClose();
+    try {
+         await addDoc(collection(db, "Take"), {
+           Amount: amountvalue,
+           Category: categoryvalue,
+           Date: datevalue,
+           Notes: notesvalue
+         });
+       } catch (err) {
+         console.error("Error adding document:", err);
+       }
+    
     }
   };
 

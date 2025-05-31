@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { collection, onSnapshot, doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../firebase.js'; 
 import './Progressbar.css';
 
-
-
-
-
 export default function ProgressBar() {
-
-  
   const [totalAdd, setTotalAdd] = useState(0);
   const [totalTake, setTotalTake] = useState(0);
   const [totalsaved, setTotalsave] = useState(0);
@@ -17,54 +13,53 @@ export default function ProgressBar() {
   const [deptbar, setDeptBar] = useState(0);
   const [Percentage, setPercentage] = useState(0);
 
-
-
   // Fetch total from "Add"
   useEffect(() => {
-    fetch('http://localhost:3001/Add')
-      .then(res => res.json())
-      .then(data => {
-        const sum = data.reduce((acc, entry) => acc + Number(entry.Amount), 0);
-        setTotalAdd(sum);
-      });
+    const unsubscribe = onSnapshot(collection(db, 'Add'), (snapshot) => {
+      const data = snapshot.docs.map((doc) => doc.data());
+      const sum = data.reduce((acc, entry) => acc + Number(entry.Amount), 0);
+      setTotalAdd(sum); // Update the totalAdd state in real-time
+    });
+
+    return () => unsubscribe(); // Cleanup the listener on component unmount
   }, []);
 
   // Fetch total from "Take"
   useEffect(() => {
-    fetch('http://localhost:3001/Take')
-      .then(res => res.json())
-      .then(data => {
-        const sum = data.reduce((acc, entry) => acc + Number(entry.Amount), 0);
-        setTotalTake(sum);
-      });
-  }, []); 
-  
-   
-  
-  // fetch and Calculate dept 
-  //Promised:
-  useEffect(() => {
-  fetch('http://localhost:3001/Dept')
-    .then(res => res.json())
-    .then(data => {
-      const filtered = data.filter(entry => entry.Type === "Promised");
-      const sum = filtered.reduce((acc, entry) => acc + Number(entry.Amount), 0);
-      setTotalPromised(sum);
+    const unsubscribe = onSnapshot(collection(db, 'Take'), (snapshot) => {
+      const data = snapshot.docs.map((doc) => doc.data());
+      const sum = data.reduce((acc, entry) => acc + Number(entry.Amount), 0);
+      setTotalTake(sum); // Update the totalTake state in real-time
     });
-}, []);
 
-  //Lended:
+    return () => unsubscribe(); // Cleanup the listener on component unmount
+  }, []);
+
+  // Fetch and calculate Dept → Promised
   useEffect(() => {
-  fetch('http://localhost:3001/Dept')
-    .then(res => res.json())
-    .then(data => {
-      const filtered = data.filter(entry => entry.Type === "Lended");
+    const unsubscribe = onSnapshot(collection(db, 'Dept'), (snapshot) => {
+      const data = snapshot.docs.map((doc) => doc.data());
+      const filtered = data.filter(entry => entry.Type === 'Promised');
       const sum = filtered.reduce((acc, entry) => acc + Number(entry.Amount), 0);
-      setTotalLended(sum);
+      setTotalPromised(sum); // Update the totalPromised state in real-time
     });
-}, []);
 
-// Calculate totalsaved and totalleft
+    return () => unsubscribe(); // Cleanup the listener on component unmount
+  }, []);
+
+  // Fetch and calculate Dept → Lended
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'Dept'), (snapshot) => {
+      const data = snapshot.docs.map((doc) => doc.data());
+      const filtered = data.filter(entry => entry.Type === 'Lended');
+      const sum = filtered.reduce((acc, entry) => acc + Number(entry.Amount), 0);
+      setTotalLended(sum); // Update the totalLended state in real-time
+    });
+
+    return () => unsubscribe(); // Cleanup the listener on component unmount
+  }, []);
+
+  // Calculate totalsaved and totalleft
   useEffect(() => {
     const totalsaved = totalAdd - totalTake - totallended;
     const totalleft = 1000000 - totalsaved;
@@ -74,9 +69,8 @@ export default function ProgressBar() {
     setDeptBar(deptbar);
   }, [totalAdd, totalTake, totallended, totalpromised]);
 
-  //progress bar and dept bar calculations:
-
-  useEffect(()=> {
+  // Progress bar and dept bar calculations
+  useEffect(() => {
     const goal = 1000000;
     const current = totalsaved;
     const deptcurrent = deptbar;
@@ -85,64 +79,52 @@ export default function ProgressBar() {
     const deptpercentage = Math.min((deptcurrent / goal) * 100, 100).toFixed(1);
     const fill = document.getElementById("fill");
     const deptfill = document.getElementById("deptfill");
-    
 
-    fill.style.width = percentage + "%";
-    deptfill.style.width = deptpercentage + "%";
-    setPercentage(percentage)
-    console.log(totalsaved)
+    if (fill) fill.style.width = percentage + "%";
+    if (deptfill) deptfill.style.width = deptpercentage + "%";
+    setPercentage(percentage);
+  }, [totalsaved, deptbar]);
+
+  // Update TotalSaved in Firestore
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "Saved"), (snapshot) => {
+      const docs = snapshot.docs;
   
-})
-
- // Store total saved
-useEffect(() => {
-  const interval = setInterval(() => {
-    fetch('http://localhost:3001/Saved')
-      .then(res => res.json())
-      .then(data => {
-        if (data.length > 0) {
-          // Use the totalsaved variable to update the TotalSaved value
-          fetch(`http://localhost:3001/Saved/${data[0].id}`, {
-            method: 'PATCH', // or 'PUT' depending on your server
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ TotalSaved: totalsaved }),
-          });
-        }
-      });
-  }, 1000);
-
-  return () => clearInterval(interval);
-}, [totalsaved]); // Add totalsaved as a dependency
-
-//to format huge numbers:
-
-function formatWithDots(value) {
-  const number = Number(value);
-  if (isNaN(number)) return value; // Fallback if not a number
-
-  const parts = number.toString().split(".");
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  return parts.join(",");
-}
-
-
-
-  //html section
+      if (docs.length > 0) {
+        const firstDoc = docs[0];
+        const docRef = doc(db, "Saved", firstDoc.id);
   
+        // Update the TotalSaved field in Firestore
+        updateDoc(docRef, {
+          TotalSaved: totalsaved
+        }).catch((err) => {
+          console.error("Error updating TotalSaved:", err);
+        });
+      }
+    });
+  
+    return () => unsubscribe(); // Cleanup the listener on component unmount
+  }, [totalsaved]);
+
+  // Format numbers with dots
+  function formatWithDots(value) {
+    const number = Number(value);
+    if (isNaN(number)) return value; // Fallback if not a number
+
+    const parts = number.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return parts.join(",");
+  }
+
+  // HTML section
   const background = {
-    
     width: "500px",
     padding: "10px",
     marginRight: "15px"
-    
   };
 
   return (
     <div style={background}>
-
-
       <div className='display'>
         <div className='progress-info'>
           <span className='saved-display'>Saved:</span>
@@ -155,20 +137,15 @@ function formatWithDots(value) {
         </div>
       </div>  
 
-
       <div className='bar'>
-        <div className='deptfill' id='deptfill'>
-          
-        </div>
-        
-        <div class="fill" id="fill">
-          <span class="filltooltip-wrapper">
-            <span class="filltooltiptext"></span>
+        <div className='deptfill' id='deptfill'></div>
+        <div className="fill" id="fill">
+          <span className="filltooltip-wrapper">
+            <span className="filltooltiptext"></span>
           </span>
         </div>
         <div className='label'>{Percentage}%</div>
       </div>
-      
     </div>
   );
 }

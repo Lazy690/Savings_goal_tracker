@@ -1,0 +1,9 @@
+npm install crypto-browserify --save-dev
+
+nvm install --lts
+nvm use --lts
+
+rm -rf node_modules package-lock.json
+npm install
+
+npm run dev

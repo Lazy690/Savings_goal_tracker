@@ -65,8 +65,7 @@ h1 {
 /* Light Mode Styles */
 :root[data-theme='light'] {
   color: #213547;
-  background-color: #e7e7e7
-;
+  background-color: #e7e7e7;
 }
 :root[data-theme='light'] a {
   color: #007bff;

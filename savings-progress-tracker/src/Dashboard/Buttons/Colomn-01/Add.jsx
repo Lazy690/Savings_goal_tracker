@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../../firebase.js'; 
 import '../Buttons.css'; 
 
 
@@ -10,7 +12,9 @@ export default function Add() {
   const handleClose = () => setShowForm(false);
   
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    handleClose();
     let amount = document.getElementById("amount");
     let amountvalue = amount.value
     
@@ -46,14 +50,20 @@ let datevalue = currentMonth + " " + currentDay +
 
 
 
-    e.preventDefault();
+    
 
-    fetch('http://localhost:3001/Add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ Amount: amountvalue, Category: categoryvalue, Date: datevalue ,Notes: notesvalue}) 
-    })
-    handleClose();
+    try {
+      await addDoc(collection(db, "Add"), {
+        Amount: amountvalue,
+        Category: categoryvalue,
+        Date: datevalue,
+        Notes: notesvalue
+      });
+    } catch (err) {
+      console.error("Error adding document:", err);
+    }
+
+    
   };
 
   return (
