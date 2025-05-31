@@ -42,7 +42,7 @@ h1 {
 }
 
 /* temporary name for buttons */
-.open-btn{
+.open-btn {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -62,19 +62,31 @@ h1 {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  .open-btn {
-    background-color: #f9f9f9;
-  }
+/* Light Mode Styles */
+:root[data-theme='light'] {
+  color: #213547;
+  background-color: #e7e7e7
+;
 }
-/* temporary name for buttons */
+:root[data-theme='light'] a {
+  color: #007bff;
+}
+:root[data-theme='light'] a:hover {
+  color: #0056b3;
+}
+
+:root[data-theme='light'] .open-btn {
+  background-color: #e7e7e7;
+  color: #213547;
+}
+:root[data-theme='light'] .open-btn:hover {
+  border-color: #213547;
+}
+
+:root[data-theme='light'] .BackGroundModalUI {
+  background-color: #ffffff;
+  color: #213547;
+}
 
 p {
   font-size: 1em;

@@ -1,37 +1,26 @@
 {
   "Add": [
     {
-      "id": "30c7",
-      "Amount": "100000",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "e8a1",
-      "Amount": "100",
-      "Category": "cat",
-      "Notes": ""
-    },
-    {
-      "id": "0575",
+      "id": "20e5",
       "Amount": "10000",
       "Category": "cat",
-      "Notes": ""
-    }
-  ],
-  "Take": [
+      "Date": "May 30, 2025",
+      "Notes": "kilograms and shit"
+    },
     {
-      "id": "8a7f",
-      "Amount": "100",
+      "id": "362d",
+      "Amount": "500000",
       "Category": "cat",
+      "Date": "May 30, 2025",
       "Notes": ""
     }
   ],
+  "Take": [],
   "Dept": [],
   "Saved": [
     {
       "id": "1",
-      "TotalSaved": 110000
+      "TotalSaved": 510000
     }
   ]
 }

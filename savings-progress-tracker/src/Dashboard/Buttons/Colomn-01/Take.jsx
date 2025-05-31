@@ -37,12 +37,35 @@ export default function Take() {
 
     let notes = document.getElementById("notes");
     let notesvalue = notes.value
+
+        //get date
+
+        const currentDate = new Date();
+
+        // Get the month name
+        const monthNames = [ "January", "February", 
+                            "March", "April", "May", "June",
+                            "July", "August", "September", 
+                            "October", "November", "December"
+        ];
+        const currentMonth = monthNames[currentDate.getMonth()];
+    
+        // Get the day of the month
+        const currentDay = currentDate.getDate();
+    
+        // Get the year
+        const currentYear = currentDate.getFullYear();
+    
+        // Construct the current day string
+        let datevalue = currentMonth + " " + currentDay + 
+                                                ", " + currentYear;
+
     e.preventDefault();
 
     fetch('http://localhost:3001/Take', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ Amount: amountvalue, Category: categoryvalue, Notes: notesvalue}) 
+      body: JSON.stringify({ Amount: amountvalue, Category: categoryvalue, Date: datevalue, Notes: notesvalue}) 
     })
     handleClose();
     }

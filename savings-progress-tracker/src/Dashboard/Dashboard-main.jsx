@@ -7,13 +7,15 @@ import "../index.css";
 
 function Dashboard() {
   return (
-    <div className="Appdiv">
-      <div className="BackGroundModalUI">
-        <>
-          <Header />
-          <ProgressBar />
-          <Buttons />
-        </>
+    <div>  
+      <div className="Appdiv">
+        <div className="BackGroundModalUI">
+          <>
+            <Header />
+            <ProgressBar />
+            <Buttons />
+          </>
+        </div>
       </div>
       <Footer />
     </div>

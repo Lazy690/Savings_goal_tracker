@@ -70,7 +70,10 @@ export default function Recordcontent() {
                 <li key={Add.id} className='deptlist record-list'>
                   
                   <span className='record-list'>
-                    {Add.Amount} - {Add.Category} - {Add.Notes}
+                    Amount: {Add.Amount} <br></br>
+                    Category: {Add.Category} <br></br>
+                    Date: {Add.Date} <br></br>
+                    Notes: {Add.Notes} <br></br>
                   </span>
                   <button
                     className="open-btn"
@@ -119,7 +122,10 @@ export default function Recordcontent() {
               {takelist.map((Take) => (
                 <li key={Take.id} className="deptlist record-list">
                   <span className='record-list'>
-                    {Take.Amount} - {Take.Category} - {Take.Notes}
+                    Amount: {Take.Amount} <br></br>
+                    Category: {Take.Category} <br></br>
+                    Date: {Take.Date} <br></br>
+                    Notes: {Take.Notes} <br></br>
                   </span>
                   <button
                     className="open-btn"
@@ -165,7 +171,12 @@ export default function Recordcontent() {
               {deptlist.map((Dept) => (
                 <li key={Dept.id} className="deptlist record-list">
                   <span className='record-list'>
-                    {Dept.Amount} - {Dept.Type} - {Dept.Who} - {Dept.Notes}
+                    Amount: {Dept.Amount} <br></br>
+                    Category: {Dept.Category} <br></br>
+                    Date: {Dept.Date} <br></br>
+                    Who: {Dept.Who} <br></br>
+                    Type: {Dept.Type} <br></br>
+                    Notes: {Dept.Notes} <br></br>  
                   </span>
                   <button
                     className="open-btn"

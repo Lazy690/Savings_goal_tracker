@@ -1,0 +1,15 @@
+<button className="goal-button" onClick={toggletheme}>Theme</button>
+                {showtheme && (
+                    <div className='theme-overlay'>
+                        <div>
+                        <button className='color-dark-blue color'></button>
+                        <button className='color-dark-red color'></button>
+                        <button className='color-dark-yellow color'></button>
+                        </div>
+                        <div>
+                        <button className='color-light-blue color'></button>
+                        <button className='color-light-red color'></button>
+                        <button className='color-light-yellow color'></button>
+                        </div>
+                    </div>
+                )}

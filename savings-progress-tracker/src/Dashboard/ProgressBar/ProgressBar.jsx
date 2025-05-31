@@ -15,6 +15,8 @@ export default function ProgressBar() {
   const [totalpromised, setTotalPromised] = useState(0);
   const [totallended, setTotalLended] = useState(0);
   const [deptbar, setDeptBar] = useState(0);
+  const [Percentage, setPercentage] = useState(0);
+
 
 
   // Fetch total from "Add"
@@ -83,11 +85,11 @@ export default function ProgressBar() {
     const deptpercentage = Math.min((deptcurrent / goal) * 100, 100).toFixed(1);
     const fill = document.getElementById("fill");
     const deptfill = document.getElementById("deptfill");
-    const label = document.getElementById("label");
+    
 
     fill.style.width = percentage + "%";
     deptfill.style.width = deptpercentage + "%";
-    label.textContent = `${percentage}%`;
+    setPercentage(percentage)
     console.log(totalsaved)
   
 })
@@ -155,9 +157,16 @@ function formatWithDots(value) {
 
 
       <div className='bar'>
-        <div className='deptfill' id='deptfill'></div>
-        <div className='fill' id='fill'></div>
-        <div className='label' id='label'></div>
+        <div className='deptfill' id='deptfill'>
+          
+        </div>
+        
+        <div class="fill" id="fill">
+          <span class="filltooltip-wrapper">
+            <span class="filltooltiptext"></span>
+          </span>
+        </div>
+        <div className='label'>{Percentage}%</div>
       </div>
       
     </div>

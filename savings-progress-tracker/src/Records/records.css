@@ -53,3 +53,16 @@
   
 }
   
+/*Light mode*/
+
+:root[data-theme='light'] .exit-record {
+  background-color: #ffffff;
+}
+
+:root[data-theme='light'] .record-window {
+  background-color: #e7e7e7;
+}
+
+:root[data-theme='light'] .record-list {
+  background-color: #ffffff;
+}

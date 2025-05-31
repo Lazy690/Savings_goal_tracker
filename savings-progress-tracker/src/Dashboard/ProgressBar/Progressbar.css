@@ -5,21 +5,32 @@
 }
 
 .bar {
-      position: relative;
-      width: 500px;
-      height: 30px;
-      background-color: #131a2f;
-      border-radius: 15px;
-      overflow: hidden;
-      position: relative;
-      z-index: 1;
-      margin-bottom: 35px;
-    }
+  width: 500px;
+  height: 30px;
+  background-color: #131a2f;
+  border-radius: 15px;
+  overflow: visible; /* Change this to allow the tooltip to overflow */
+  position: relative; /* Ensure the tooltip is positioned relative to the bar */
+  z-index: 1;
+  margin-bottom: 35px;
+}
 
-    
+.fill {
+  position: relative;
+  border-radius: 15px;
+  display: inline-block;
+  cursor: default;
+  height: 100%;
+  background-color: #26c4f4;
+  width: 0;
+  transition: width 0.5s ease;
+  z-index: 3;
+}
+
 
     .deptfill {
       position: absolute;
+      
       border-radius: 15px;
       height: 100%;
       background-color: #747474; 
@@ -27,45 +38,11 @@
       transition: width 0.5s ease;
       z-index: 2;
     }
-    
-    .fill {
-      position: relative;
-      border-radius: 15px;
-      display: inline-block;
-      cursor: pointer;
-      height: 100%;
-      background-color: #26c4f4;
-      width: 0;
-      transition: width 0.5s ease;
-      z-index: 3;
-    }
-
-    .filltooltip-text {
-      visibility: hidden;
-      width: 140px;
-      background-color: black;
-      color: #fff;
-      text-align: center;
-      border-radius: 5px;
-      padding: 5px;
-      position: absolute;
-      z-index: 1;
-      bottom: 125%; /* position above */
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .fill .filltooltip-text {
-      visibility: visible;
-      opacity: 1;
-    }
-    
+   
     .label {
       position: absolute;
-      width: 100%;
-      text-align: center;
+      
+      margin-left: 240px;
       top: 0;
       line-height: 30px;
       font-weight: bold;
@@ -95,7 +72,7 @@
       cursor: default;
     }
     .progress-info:hover {
-      border: 1px #fff solid;
+      border: 1px #ffffff solid;
     }
     .saved-display {
       position: relative;
@@ -107,3 +84,18 @@
       margin-top: 3px;
     }
   
+/*light mode*/
+
+:root[data-theme='light'] .bar {
+  background-color: #e7e7e7;
+}
+:root[data-theme='light'] .label {
+  color: rgb(0, 0, 0);
+}
+:root[data-theme='light'] .progress-info {
+  background-color: #e7e7e7;
+  
+}
+:root[data-theme='light'] .progress-info:hover {
+  border: 1px #000000 solid;
+}
