@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../../firebase.js'; 
 import '../Buttons.css';  
 
 
@@ -19,7 +21,7 @@ export default function Dept() {
     setInputValue(value); // puts it in the box
   };
 
-  const handleSubmit = (e) => { //to get the value of the selection box
+  const handleSubmit = async (e) => { //to get the value of the selection box
     e.preventDefault();
     handleClose();
     
@@ -57,17 +59,23 @@ export default function Dept() {
     let datevalue = currentMonth + " " + currentDay + 
                                             ", " + currentYear;
 
-    e.preventDefault();
+    
 
-    fetch('http://localhost:3001/Dept', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ Amount: amountvalue, Who: whovalue, Type: selection, Date: datevalue, Notes: notesvalue})
-      
-    })
+     try {
+             await addDoc(collection(db, "Dept"), {
+               Amount: amountvalue,
+               Type: selection,
+               Date: datevalue,
+               Notes: notesvalue
+             });
+           } catch (err) {
+             console.error("Error adding document:", err);
+             
+           }
+    }
 
     
-  };
+  
 
   return (
     <div>

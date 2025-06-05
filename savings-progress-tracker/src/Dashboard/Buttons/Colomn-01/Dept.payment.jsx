@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { collection, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../../firebase.js';
 import '../Buttons.css'; 
 import React from 'react';
 
@@ -18,9 +20,15 @@ export default function DeptPayment() {
   
   //fetch the list of depts
   useEffect(() => {
-    fetch('http://localhost:3001/Dept')
-      .then(res => res.json())
-      .then(data => setDeptList(data));
+    const unsubscribe = onSnapshot(collection(db, 'Dept'), (snapshot) => {
+      const data = snapshot.docs.map((doc) => ({
+        id: doc.id, 
+        ...doc.data() 
+      }));
+      setDeptList(data); 
+    });
+  
+    return () => unsubscribe();
   }, []);
 
   return (
@@ -56,15 +64,15 @@ export default function DeptPayment() {
                   <div className="modal">
                     <h2>Are you sure you want to delete this dept?</h2>
                     <button
-                        onClick={() => {
-                        fetch(`http://localhost:3001/Dept/${pendingDeleteId}`, {
-                          method: 'DELETE',
-                        })
-                          .then(() => {
-                            setDeptList(prev => prev.filter(d => d.id !== pendingDeleteId));
-                            setPendingDeleteId(null);
-                            handleDeleteClose();
-                          });
+                      onClick={async () => {
+                        try {
+                          
+                          await deleteDoc(doc(db, 'Dept', pendingDeleteId));
+                          setPendingDeleteId(null);
+                          handleDeleteClose();
+                        } catch (err) {
+                          console.error('Error deleting document:', err);
+                        }
                       }}
                       className='open-btn'
                     >
