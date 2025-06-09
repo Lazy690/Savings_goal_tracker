@@ -1,7 +1,9 @@
 import React from 'react';
 import { Routes, Route, Link } from "react-router-dom";
 import Records from "./Records/records.jsx";
-import Dashboard from "./Dashboard/Dashboard-main.jsx"
+import Dashboard from "./Dashboard/Dashboard-main.jsx";
+import Login from "./Sign&Login/login.jsx";
+import SignUp from './Sign&Login/signup.jsx';
 import "./index.css";
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
        
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/records" element={<Records />} />
         </Routes>
       
