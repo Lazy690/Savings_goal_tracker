@@ -2,30 +2,41 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useTheme } from '../../../ThemeContext'; // Import the useTheme hook
 import { collection, onSnapshot, doc, setDoc } from 'firebase/firestore';
-import { db } from "../../../firebase"
+import { db, auth } from '../../../firebase.js'; 
 import './header.css';
 
 function Header() {
+
+    const user = auth.currentUser;
+ 
   const [showtheme, setShowTheme] = useState(false);
   const { toggleTheme } = useTheme(); // Access the toggleTheme function
-  const [loadedtheme, setLoadedTheme] = useState()
-  const [theme, setTheme] = useState()
+ 
+  //Ask if sure want to logout
+
+
+
 
    //fetch sotred theme from db
-  useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'Theme'), (snapshot) => {
-          const data = snapshot.docs.map((doc) => doc.data());
-          const fetched = data.reduce((acc, entry) => acc + Boolean(entry.color), 0);
-        
-          if (fetched === 0) {
-            toggleTheme("dark")
-          } else {
-            toggleTheme("light")
-          }
-        });
-
-    return () => unsubscribe(); // Cleanup the listener on component unmount
-  }, []);
+   useEffect(() => {
+    const unsubscribe = onSnapshot(doc(db, "users", user.uid, "Theme", "settings"), (docSnapshot) => {
+      if (docSnapshot.exists()) {
+        const data = docSnapshot.data();
+        const isLightTheme = data.color; // Directly access the color field (true or false)
+  
+        if (!isLightTheme) {
+          toggleTheme("dark");
+        } else {
+          toggleTheme("light");
+        }
+      } else {
+        // Handle case where document doesn't exist (optional)
+        toggleTheme("dark"); // Default to dark if no document
+      }
+    });
+  
+    return () => unsubscribe(); // Cleanup listener on unmount
+  }, [user.uid]); // Dependency array includes user.uid
 
  
 
@@ -39,7 +50,7 @@ function Header() {
   toggleTheme("dark")
   
   try {
-        await setDoc(doc(db, "Theme", "color" ), {
+        await setDoc(doc(db, "users", user.uid, "Theme", "settings"), {
           color: false
         });
       } catch (err) {
@@ -54,7 +65,7 @@ function Header() {
     toggleTheme("light")
     
     try {
-      await setDoc(doc(db, "Theme", "color" ), {
+      await setDoc(doc(db, "users", user.uid, "Theme", "settings"), {
         color: true
       });
     } catch (err) {

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { collection, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../firebase.js'; // Ensure the correct path to your firebase.js file
+import { db, auth } from '../firebase.js'; // Ensure the correct path to your firebase.js file
+import { onAuthStateChanged } from "firebase/auth";
 import "./records.css";
 
 export default function Recordcontent() {
+  const [user, setUser] = useState(auth.currentUser); // Track the authenticated user
   const [activeTab, setActiveTab] = useState(null); // Tracks the active tab: "Dept", "Add", or "Take"
   const [deptlist, setDeptList] = useState([]);
   const [addlist, setAddList] = useState([]);
   const [takelist, setTakeList] = useState([]);
-  const [pendingDeleteId, setPendingDeleteId] = useState(null);
+  const [pendingDeleteId, setPendingDeleteId] = useState([]);
 
   // Delete modals
   const [showDeleteAdd, setShowDeleteAdd] = useState(false);
@@ -24,9 +26,24 @@ export default function Recordcontent() {
   const handleDeleteOpenDept = () => setShowDeleteDept(true);
   const handleDeleteCloseDept = () => setShowDeleteDept(false);
 
+  // Track authentication state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser); // Set the user state
+      } else {
+        console.error("User is not authenticated.");
+      }
+    });
+
+    return () => unsubscribe(); // Cleanup the listener on component unmount
+  }, []);
+
   // Fetch the list of depts in real-time
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'Dept'), (snapshot) => {
+    if (!user) return; // Ensure user is defined
+
+    const unsubscribe = onSnapshot(collection(db, "users", user.uid, "Dept"), (snapshot) => {
       const data = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data()
@@ -35,11 +52,13 @@ export default function Recordcontent() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [user]);
 
   // Fetch the list of adds in real-time
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'Add'), (snapshot) => {
+    if (!user) return; // Ensure user is defined
+
+    const unsubscribe = onSnapshot(collection(db, "users", user.uid, "Add"), (snapshot) => {
       const data = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data()
@@ -48,11 +67,13 @@ export default function Recordcontent() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [user]);
 
   // Fetch the list of takes in real-time
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'Take'), (snapshot) => {
+    if (!user) return; // Ensure user is defined
+
+    const unsubscribe = onSnapshot(collection(db, "users", user.uid, "Take"), (snapshot) => {
       const data = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data()
@@ -61,7 +82,11 @@ export default function Recordcontent() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [user]);
+
+  if (!user) {
+    return <div>Please log in to view your records.</div>;
+  }
 
   return (
     <div>
@@ -106,7 +131,7 @@ export default function Recordcontent() {
                   onClick={async () => {
                     try {
                       handleDeleteCloseAdd();
-                      await deleteDoc(doc(db, 'Add', pendingDeleteId));
+                      await deleteDoc(doc(db, "users", user.uid, "Add", pendingDeleteId));
                       setPendingDeleteId(null);
                       
                     } catch (err) {
@@ -154,7 +179,7 @@ export default function Recordcontent() {
                   onClick={async () => {
                     try {
                       handleDeleteCloseTake();
-                      await deleteDoc(doc(db, 'Take', pendingDeleteId));
+                      await deleteDoc(doc(db, "users", user.uid, "Take", pendingDeleteId));
                       setPendingDeleteId(null);
   
                     } catch (err) {
@@ -204,7 +229,7 @@ export default function Recordcontent() {
                   onClick={async () => {
                     try {
                       handleDeleteCloseDept();
-                      await deleteDoc(doc(db, 'Dept', pendingDeleteId));
+                      await deleteDoc(doc(db, "users", user.uid, "Dept", pendingDeleteId));
                       setPendingDeleteId(null);
                       
                     } catch (err) {

@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { collection, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../../../firebase.js';
+import { db, auth } from '../../../firebase.js';
 import '../Buttons.css'; 
 import React from 'react';
 
 
 export default function DeptPayment() {
 
+  const user = auth.currentUser;
+  
   const [showForm, setShowForm] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [deptlist, setDeptList] = useState([]);
@@ -20,7 +22,7 @@ export default function DeptPayment() {
   
   //fetch the list of depts
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'Dept'), (snapshot) => {
+    const unsubscribe = onSnapshot(collection(db, "users", user.uid, 'Dept'), (snapshot) => {
       const data = snapshot.docs.map((doc) => ({
         id: doc.id, 
         ...doc.data() 
@@ -67,7 +69,7 @@ export default function DeptPayment() {
                       onClick={async () => {
                         try {
                           
-                          await deleteDoc(doc(db, 'Dept', pendingDeleteId));
+                          await deleteDoc(doc(db, "users", user.uid, 'Dept', pendingDeleteId));
                           setPendingDeleteId(null);
                           handleDeleteClose();
                         } catch (err) {

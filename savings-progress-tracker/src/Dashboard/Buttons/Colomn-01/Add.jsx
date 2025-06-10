@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../../../firebase.js'; 
+import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
+import { db, auth } from '../../../firebase.js'; 
+
 import '../Buttons.css'; 
 
 
 
 export default function Add() {
+
+  const user = auth.currentUser; 
   const [showForm, setShowForm] = useState(false);
 
   const handleOpen = () => setShowForm(true);
@@ -51,17 +54,16 @@ let datevalue = currentMonth + " " + currentDay +
 
 
     
-
     try {
-      await addDoc(collection(db, "Add"), {
-        Amount: amountvalue,
+      await addDoc(collection(db, "users", user.uid, "Add"), {
+        Amount: amountvalue, 
         Category: categoryvalue,
         Date: datevalue,
         Notes: notesvalue
       });
-    } catch (err) {
-      console.error("Error adding document:", err);
-    }
+        } catch (err) {
+          console.error("Error adding document:", err);
+        }
 
     
   };

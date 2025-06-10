@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../../../firebase.js'; 
+import { db, auth } from '../../../firebase.js'; 
 import '../Buttons.css';  
 
 
 
 export default function Dept() {
+
+  const user = auth.currentUser;
+  
   const [showForm, setShowForm] = useState(false);
   //Type:
  
@@ -62,7 +65,7 @@ export default function Dept() {
     
 
      try {
-             await addDoc(collection(db, "Dept"), {
+             await addDoc(collection(db, "users", user.uid, "Dept"), {
                Amount: amountvalue,
                Type: selection,
                Date: datevalue,

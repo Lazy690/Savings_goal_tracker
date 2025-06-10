@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { collection, onSnapshot, doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../firebase.js'; 
+import { collection, onSnapshot, doc, updateDoc, getDoc, setDoc } from 'firebase/firestore';
+import { db, auth } from '../../firebase.js'; 
+
 import './Progressbar.css';
 
 export default function ProgressBar() {
+
+  const user = auth.currentUser;
+
   const [totalAdd, setTotalAdd] = useState(0);
   const [totalTake, setTotalTake] = useState(0);
   const [totalsaved, setTotalsave] = useState(0);
@@ -13,49 +17,80 @@ export default function ProgressBar() {
   const [deptbar, setDeptBar] = useState(0);
   const [Percentage, setPercentage] = useState(0);
 
+  // Fetch TotalSaved from Firestore on page load
+  useEffect(() => {
+    if (!user) return; // Ensure user is defined
+
+    const docRef = doc(db, "users", user.uid, "Data", "Saved");
+
+    const fetchTotalSaved = async () => {
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        setTotalsave(data.TotalSaved || 0); // Initialize totalsaved with the value from Firestore
+      } else {
+        console.error("Document does not exist.");
+      }
+    };
+
+    fetchTotalSaved();
+  }, [user]);
+
+  // Update TotalSaved in Firestore when totalsaved changes
+  useEffect(() => {
+    if (!user || totalsaved === 0) return; // Ensure user is defined and totalsaved is not 0
+
+    const docRef = doc(db, "users", user.uid, "Data", "Saved");
+
+    updateDoc(docRef, {
+      TotalSaved: Number(totalsaved)
+    }).catch((err) => {
+      console.error("Error updating TotalSaved:", err);
+    });
+  }, [totalsaved, user]);
+
   // Fetch total from "Add"
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'Add'), (snapshot) => {
+    const unsubscribe = onSnapshot(collection(db, "users", user.uid, "Add"), (snapshot) => {
       const data = snapshot.docs.map((doc) => doc.data());
       const sum = data.reduce((acc, entry) => acc + Number(entry.Amount), 0);
       setTotalAdd(sum); // Update the totalAdd state in real-time
     });
 
     return () => unsubscribe(); // Cleanup the listener on component unmount
-  }, []);
+  }, [user]);
 
   // Fetch total from "Take"
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'Take'), (snapshot) => {
+    const unsubscribe = onSnapshot(collection(db, "users", user.uid, "Take"), (snapshot) => {
       const data = snapshot.docs.map((doc) => doc.data());
       const sum = data.reduce((acc, entry) => acc + Number(entry.Amount), 0);
       setTotalTake(sum); // Update the totalTake state in real-time
     });
 
     return () => unsubscribe(); // Cleanup the listener on component unmount
-  }, []);
+  }, [user]);
 
   // Fetch and calculate Dept → Promised
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'Dept'), (snapshot) => {
+    const unsubscribe = onSnapshot(collection(db, "users", user.uid, 'Dept'), (snapshot) => {
       const data = snapshot.docs.map((doc) => doc.data());
       const filtered = data.filter(entry => entry.Type === 'Promised');
       const sum = filtered.reduce((acc, entry) => acc + Number(entry.Amount), 0);
-      setTotalPromised(sum); // Update the totalPromised state in real-time
+      setTotalPromised(sum);
     });
-
     return () => unsubscribe(); // Cleanup the listener on component unmount
   }, []);
 
   // Fetch and calculate Dept → Lended
+
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'Dept'), (snapshot) => {
+    const unsubscribe = onSnapshot(collection(db, "users", user.uid, 'Dept'), (snapshot) => {
       const data = snapshot.docs.map((doc) => doc.data());
       const filtered = data.filter(entry => entry.Type === 'Lended');
       const sum = filtered.reduce((acc, entry) => acc + Number(entry.Amount), 0);
-      setTotalLended(sum); // Update the totalLended state in real-time
+      setTotalLended(sum);
     });
-
     return () => unsubscribe(); // Cleanup the listener on component unmount
   }, []);
 
@@ -84,27 +119,6 @@ export default function ProgressBar() {
     if (deptfill) deptfill.style.width = deptpercentage + "%";
     setPercentage(percentage);
   }, [totalsaved, deptbar]);
-
-  // Update TotalSaved in Firestore
-  useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "Saved"), (snapshot) => {
-      const docs = snapshot.docs;
-  
-      if (docs.length > 0) {
-        const firstDoc = docs[0];
-        const docRef = doc(db, "Saved", firstDoc.id);
-  
-        // Update the TotalSaved field in Firestore
-        updateDoc(docRef, {
-          TotalSaved: totalsaved
-        }).catch((err) => {
-          console.error("Error updating TotalSaved:", err);
-        });
-      }
-    });
-  
-    return () => unsubscribe(); // Cleanup the listener on component unmount
-  }, [totalsaved]);
 
   // Format numbers with dots
   function formatWithDots(value) {
