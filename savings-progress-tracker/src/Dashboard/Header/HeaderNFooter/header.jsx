@@ -11,7 +11,11 @@ function Header() {
  
   const [showtheme, setShowTheme] = useState(false);
   const { toggleTheme } = useTheme(); // Access the toggleTheme function
+  const [asklogout, setAskLogout] = useState(false)
  
+
+  const OpenAsk = () => setAskLogout(true);
+  const CloseAsk = () => setAskLogout(false);
   //Ask if sure want to logout
 
 
@@ -45,6 +49,7 @@ function Header() {
     setShowTheme((prev) => !prev);
   };
 
+
   //handle dark mode
   const handledarkmode = async () =>{
   toggleTheme("dark")
@@ -60,7 +65,6 @@ function Header() {
 
   //handle light mode
 
-   //handle dark mode
    const handlelightmode = async () =>{
     toggleTheme("light")
     
@@ -77,13 +81,33 @@ function Header() {
   return (
     <div className="header">
       <span className="buton-wrap">
+        
+        
+
         <button className="goal-button">Goals</button>
+
 
         <button className="goal-button" onClick={toggletheme}>
           Theme
         </button>
-
-        <button className="goal-button" onClick={() => navigate("/login")}>Log Out</button>
+        <button className="goal-button" onClick={OpenAsk}>Log Out</button>
+        
+        {asklogout && (
+                        <div className="overlay">
+                          <div className="modal">
+                            <h2>Are you sure you want to log out?</h2>
+                            <button
+                              onClick={() => navigate("/login")}
+                              className='open-btn'
+                            >
+                              Yes
+                            </button>
+        
+                            <button onClick={CloseAsk} className='open-btn'>No</button>
+                          </div>   
+                        </div>
+        
+                    )}
         {showtheme && (
           <div className="theme-overlay">
             <div>

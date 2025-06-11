@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { collection, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db, auth } from '../firebase.js'; // Ensure the correct path to your firebase.js file
 import { onAuthStateChanged } from "firebase/auth";
+import { useTheme } from '../ThemeContext'; // Import the useTheme hook
 import "./records.css";
 
 export default function Recordcontent() {
@@ -11,6 +12,7 @@ export default function Recordcontent() {
   const [addlist, setAddList] = useState([]);
   const [takelist, setTakeList] = useState([]);
   const [pendingDeleteId, setPendingDeleteId] = useState([]);
+  const { toggleTheme } = useTheme(); // Access the toggleTheme function
 
   // Delete modals
   const [showDeleteAdd, setShowDeleteAdd] = useState(false);
@@ -38,6 +40,28 @@ export default function Recordcontent() {
 
     return () => unsubscribe(); // Cleanup the listener on component unmount
   }, []);
+
+  // Fetch the user's theme preference
+  useEffect(() => {
+    if (!user) return; // Ensure user is defined
+
+    const unsubscribe = onSnapshot(doc(db, "users", user.uid, "Theme", "settings"), (docSnapshot) => {
+      if (docSnapshot.exists()) {
+        const data = docSnapshot.data();
+        const isLightTheme = data.color; // Directly access the color field (true or false)
+
+        if (!isLightTheme) {
+          toggleTheme("dark");
+        } else {
+          toggleTheme("light");
+        }
+      } else {
+        console.error("Theme settings document does not exist.");
+      }
+    });
+
+    return () => unsubscribe(); // Cleanup listener on unmount
+  }, [user, toggleTheme]);
 
   // Fetch the list of depts in real-time
   useEffect(() => {

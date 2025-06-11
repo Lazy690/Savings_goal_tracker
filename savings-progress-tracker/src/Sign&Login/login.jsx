@@ -35,17 +35,17 @@ export default function Login() {
         <div>
             <div>
                 <form onSubmit={handleSubmit}>
-                    <label>Login to Your Account</label>
+                    <h2>Login to Your Account</h2><br/>
 
-                    <label>Email:</label>
-                    <input id="email" type="email"></input>
+                    <label>Email</label><br/>
+                    <input id="email" type="email"></input><br/>
 
-                    <label>PassWord:</label>
-                    <input id="password" type="password"></input>
+                    <label>Password</label><br/>
+                    <input id="password" type="password"></input><br/>
 
-                    <button type="submit">Login</button>
+                    <button className="log-button1" type="submit">Login</button><br/>
                 </form>
-                    <p>dont have an account?</p><button onClick={() => navigate("/signup")}>Sign up here.</button>
+                    <p>dont have an account?</p><button className="log-button2" onClick={() => navigate("/signup")}>Sign up here</button>
                 
             </div>
         </div>

@@ -3,6 +3,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, setDoc, doc, addDoc } from 'firebase/firestore';
 import { db } from '../firebase.js'; 
 import { useNavigate } from "react-router-dom";
+import "./sign&login.css"
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -51,7 +52,7 @@ export default function SignUp() {
 
              // Add a default Saved document
             await setDoc(doc(db, "users", user.uid, "Data", "Saved"), {
-                TotalSaved: 0
+                TotalSaved: Number(0)
             }, { merge: true });
             
 
@@ -68,7 +69,7 @@ export default function SignUp() {
             <form onSubmit={handleSubmit} className="space-y-4">
                 <h2 className="text-2xl font-bold">Create Account</h2>
                 <div>
-                    <label htmlFor="userName" className="block">Username:</label>
+                    <label htmlFor="userName" className="block">User Name</label><br/>
                     <input
                         id="userName"
                         type="text"
@@ -79,41 +80,41 @@ export default function SignUp() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="email" className="block">Email:</label>
+                    <label htmlFor="email" className="block">Email</label><br/>
                     <input
                         id="email"
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full border p-2 rounded"
+                        className="Log-input"
                     />
                 </div>
                 <div>
-                    <label htmlFor="password" className="block">Password:</label>
+                    <label htmlFor="password" className="block">Password</label><br/>
                     <input
                         id="password"
                         type="password"
                         value={formData.password}
                         onChange={handleChange}
                         required
-                        className="w-full border p-2 rounded"
+                        className="Log-input"
                     />
                 </div>
                 <div>
-                    <label htmlFor="passConfirm" className="block">Confirm Password:</label>
+                    <label htmlFor="passConfirm" className="block">Confirm Password</label><br/>
                     <input
                         id="passConfirm"
                         type="password"
                         value={formData.passConfirm}
                         onChange={handleChange}
                         required
-                        className="w-full border p-2 rounded"
+                        className="Log-input"
                     />
                 </div>
                 <button
                     type="submit"
-                    className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+                    className="log-button1"
                 >
                     Create Account
                 </button>
@@ -122,7 +123,7 @@ export default function SignUp() {
                 <p>Already have an account?</p>
                 <button
                     onClick={() => navigate("/login")}
-                    className="text-blue-500 hover:underline"
+                    className="log-button2"
                 >
                     Go to Login
                 </button>

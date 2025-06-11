@@ -1,0 +1,47 @@
+.log-button1 {
+
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 5px;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #131A2E;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    margin-top: 40px;
+    padding-right: 75px;
+    text-align: center;
+    
+  }
+  .log-button1:hover {
+    border-color: #ffffff;
+  }
+  .log-button1:focus,
+  .log-button1:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+
+  .log-button2 {
+
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 5px;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    font-display: center;
+    background-color: #131A2E;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    
+    
+    
+  }
+  .log-button2:hover {
+    border-color: #ffffff;
+  }
+  .log-button2:focus,
+  .log-button2:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
